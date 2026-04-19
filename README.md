@@ -1,10 +1,9 @@
-# 📡 Practical 10 — ML Model Monitoring with Prometheus & Grafana
-**Course:** RTAI-242P — AI Product Development and Deployment  
-**Practical:** 10 | **Topic:** Prometheus Metrics · Grafana Dashboards · Drift Alerts
+# ML Model Monitoring with Prometheus & Grafana
+**Prometheus Metrics · Grafana Dashboards · Drift Alerts**
 
 ---
 
-## 📌 Project Overview
+## Project Overview
 
 This practical demonstrates a complete **ML Model Monitoring** pipeline:
 
@@ -26,7 +25,7 @@ This practical demonstrates a complete **ML Model Monitoring** pipeline:
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 practical10_prometheus_grafana/
@@ -55,17 +54,17 @@ practical10_prometheus_grafana/
 
 ---
 
-## ⚙️ Setup Instructions
+##  Setup Instructions
 
 ### Step 1: Create Conda Environment
 ```bash
 conda env create -f environment.yml
-conda activate rtai242p_practical10
+conda activate model-monitoring
 ```
 **OR manually:**
 ```bash
-conda create -n rtai242p_practical10 python=3.10
-conda activate rtai242p_practical10
+conda create -n model-monitoring python=3.10
+conda activate model-monitoring
 pip install -r requirements.txt
 ```
 
@@ -76,9 +75,9 @@ python generate_model.py
 
 ---
 
-## 🚀 Execution Steps
+##  Execution Steps
 
-### OPTION A — Local Demo (No Docker Required) ✅ Recommended for Class
+### OPTION A — Local Demo (No Docker Required)  Recommended for Class
 
 Open **3 terminal windows**, all with conda env activated:
 
@@ -112,7 +111,7 @@ curl http://localhost:8000/simulate?n=30
 
 ---
 
-### OPTION B — Full Stack with Docker (Prometheus + Grafana) 🐳
+### OPTION B — Full Stack with Docker (Prometheus + Grafana)
 
 **Prerequisites:** Docker Desktop installed and running
 
@@ -146,7 +145,7 @@ docker-compose down
 
 ---
 
-## 📊 Expected Output
+## Expected Output
 
 ### Terminal (generate_model.py)
 ```
@@ -159,7 +158,7 @@ Models saved -> models/iris_model.pkl
 ```
 INFO:     Started server process
 INFO:     Uvicorn running on http://0.0.0.0:8000
-✅ Model loaded: models/iris_model.pkl
+Model loaded: models/iris_model.pkl
 INFO:     GET /metrics      [Prometheus scraping]
 INFO:     POST /predict     200 OK
 ```
@@ -195,7 +194,7 @@ ml_model_drift_score 0.23456
 
 ---
 
-## 🚨 Alert Rules (alert_rules.yml)
+## Alert Rules (alert_rules.yml)
 
 | Alert | Condition | Severity |
 |---|---|---|
@@ -207,7 +206,7 @@ ml_model_drift_score 0.23456
 
 ---
 
-## 📐 PromQL Query Examples
+## PromQL Query Examples
 
 ```promql
 # Total predictions
@@ -238,7 +237,7 @@ ml_model_confidence
 
 ---
 
-## ⚠️ Common Errors & Fixes
+## Common Errors & Fixes
 
 | Error | Fix |
 |---|---|
@@ -252,7 +251,7 @@ ml_model_confidence
 
 ---
 
-## 🎓 Key Concepts for Students
+## Key Concepts for Students
 
 | Concept | Explanation |
 |---|---|
@@ -265,5 +264,3 @@ ml_model_confidence
 | **Model Drift** | When real-world data distribution shifts from training data. |
 
 ---
-
-*RTAI-242P · Practical 10 · ML Model Monitoring with Prometheus & Grafana*

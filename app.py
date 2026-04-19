@@ -171,7 +171,7 @@ async def root():
       <p>RTAI-242P · Practical 10 · Prometheus + Grafana</p>
 
       <div class="card">
-        <h2>🔗 Endpoints</h2>
+        <h2> Endpoints</h2>
         <p><a href="/docs"> /docs</a> — Swagger UI (interactive API)</p>
         <p><a href="/metrics"> /metrics</a> — Prometheus metrics scrape endpoint</p>
         <p><a href="/health"> /health</a> — Health check</p>
@@ -180,7 +180,7 @@ async def root():
       </div>
 
       <div class="card">
-        <h2>📡 Tracked Metrics</h2>
+        <h2> Tracked Metrics</h2>
         <span class="tag">ml_predictions_total</span>
         <span class="tag">ml_inference_duration_seconds</span>
         <span class="tag">ml_prediction_errors_total</span>
