@@ -1,0 +1,65 @@
+# =============================================================
+#  Prometheus Alert Rule
+#  File: alert_rules.yml
+#  Purpose: Define when to fire alerts based on ML metrics
+# =============================================================
+
+groups:
+  - name: ml_model_alerts
+    interval: 15s
+    rules:
+
+      # Alert 1: High Error Rate
+      - alert: HighPredictionErrorRate
+        expr: |
+          rate(ml_prediction_errors_total[5m]) /
+          rate(ml_predictions_total[5m]) > 0.05
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High ML prediction error rate"
+          description: "Error rate is {{ $value | humanizePercentage }} (threshold: 5%)"
+
+      # Alert 2: High Inference Latency (P95 > 500ms)
+      - alert: HighInferenceLatency
+        expr: |
+          histogram_quantile(0.95,
+            rate(ml_inference_duration_seconds_bucket[5m])
+          ) > 0.5
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High ML inference latency"
+          description: "P95 latency is {{ $value | humanizeDuration }} (threshold: 500ms)"
+
+      # Alert 3: Model Drift Detected
+      - alert: ModelDriftDetected
+        expr: ml_model_drift_score > 0.7
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "Model drift detected!"
+          description: "Drift score is {{ $value }} (threshold: 0.7)"
+
+      # Alert 4: Low Model Confidence
+      - alert: LowModelConfidence
+        expr: ml_model_confidence < 0.6
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Low model prediction confidence"
+          description: "Confidence is {{ $value }} (threshold: 60%)"
+
+      # Alert 5: No predictions in last 5 minutes (model down?)
+      - alert: NoPredictions
+        expr: increase(ml_predictions_total[5m]) == 0
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "No predictions received in 5 minutes"
+          description: "Model may be down or receiving no traffic"
