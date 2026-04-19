@@ -77,7 +77,7 @@ python generate_model.py
 
 ##  Execution Steps
 
-### OPTION A — Local Demo (No Docker Required)  Recommended for Class
+### OPTION A — Local Demo (No Docker Required)  Recommend
 
 Open **3 terminal windows**, all with conda env activated:
 

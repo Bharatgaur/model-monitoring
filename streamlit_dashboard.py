@@ -130,8 +130,7 @@ def get_prometheus_metrics():
 # SIDEBAR
 # ══════════════════════════════════════════════════════════════
 with st.sidebar:
-    st.markdown("### 📡 Practical 10")
-    st.markdown("**ML Monitoring Dashboard**")
+    st.markdown("### **ML Monitoring Dashboard**")
     st.markdown("---")
 
     # API Status
@@ -177,7 +176,7 @@ st.markdown("""
     ML Model Monitoring — Real-Time Dashboard
   </h2>
   <p style="margin:4px 0 0;color:#6b7280;">
-    Prometheus Metrics · Iris Classifier · RTAI-242P Practical 10
+    Prometheus Metrics · Iris Classifier · 
   </p>
 </div>
 """, unsafe_allow_html=True)
@@ -187,7 +186,7 @@ st.markdown("""
 # TABS
 # ══════════════════════════════════════════════════════════════
 tab1, tab2, tab3, tab4 = st.tabs([
-    " Live Metrics", "🔍 Prometheus Raw", "🤖 Live Prediction", "📚 Architecture"
+    " Live Metrics", " Prometheus Raw", " Live Prediction", " Architecture"
 ])
 
 
@@ -200,7 +199,7 @@ with tab1:
     prom_metrics, prom_raw = get_prometheus_metrics()
 
     if stats is None:
-        st.error("⚠️ Cannot connect to FastAPI server. Make sure `python app.py` is running!")
+        st.error(" Cannot connect to FastAPI server. Make sure `python app.py` is running!")
         st.code("python app.py", language="bash")
         st.stop()
 
@@ -304,7 +303,7 @@ with tab1:
             fig2.add_hline(y=0.6, line_dash="dash", line_color="#f87171",
                            annotation_text="Critical (0.6)")
             fig2.update_layout(
-                title='⚠️ Model Drift Score Over Time',
+                title=' Model Drift Score Over Time',
                 xaxis_title='Time', yaxis_title='Drift Score',
                 template='plotly_dark', paper_bgcolor='#111827',
                 plot_bgcolor='#111827', height=300, yaxis_range=[0, 1]
@@ -312,7 +311,7 @@ with tab1:
             st.plotly_chart(fig2, use_container_width=True)
 
     # Recent predictions table
-    st.markdown("### 📋 Last 10 Predictions")
+    st.markdown("### Last 10 Predictions")
     last_preds = stats.get("last_10_predictions", [])
     if last_preds:
         df = pd.DataFrame(last_preds)
@@ -415,7 +414,7 @@ with tab3:
 # TAB 4: ARCHITECTURE
 # ══════════════════════════════════════════════════════════════
 with tab4:
-    st.subheader("📚 System Architecture")
+    st.subheader(" System Architecture")
     st.markdown("""
     ```
     ┌─────────────────────────────────────────────────────────┐
@@ -453,7 +452,7 @@ with tab4:
     ```
     """)
 
-    st.markdown("### 📐 Prometheus Metric Types Used")
+    st.markdown("###  Prometheus Metric Types Used")
     metric_types = {
         "Counter": "ml_predictions_total, ml_prediction_errors_total — only goes up",
         "Histogram": "ml_inference_duration_seconds — tracks distribution & percentiles",
